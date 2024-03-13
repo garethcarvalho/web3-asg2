@@ -34,29 +34,45 @@ const UserForm = ({onLogin}) => {
     
     function renderLoginForm() {
         return (
-            <form onSubmit={onSubmit}>
-                <h2 className="text-3xl font-bold text-yellow-600 m-4">Login</h2>
-                <label>Email</label>
-                <input type="text" ref={email} />
-                <label>Password</label>
-                <input type="password" ref={password} />
-                <button type="submit">Login</button>
-                <button type="button" onClick={changeLoginType}>Don't have an Account? Register here</button>
-            </form>
+            <div className="flex h-screen">
+                <form onSubmit={onSubmit} className="bg-gray-200 m-auto pt-8 px-16 pb-16 flex flex-col rounded-lg shadow-md">
+                    <h2 className="font-bold text-xl text-center mb-8">Login</h2>
+                    <div className="m-1 flex justify-between">
+                        <label className="mr-4 text-sm">Email</label>
+                        <input className="px-1 focus:drop-shadow-lg transition-all duration-300 text-sm" type="text" ref={email} />
+                    </div>
+                    <div className="m-1 flex justify-between">
+                        <label className="mr-4 text-sm">Password</label>
+                        <input className="px-1 focus:drop-shadow-lg transition-all duration-300 text-sm" type="password" ref={password} />
+                    </div>
+                    <div className="flex flex-col mt-4 text-center">
+                        <button type="submit" className="text-white font-bold text-sm py-2 px-4 rounded-full bg-blue-500 hover:bg-blue-600 hover:shadow-lg focus:bg-blue-600 focus:shadow-lg transition-all duration-300">LOGIN</button>
+                        <span className="text-xs">Don't have an Account? <button type="button" onClick={changeLoginType} className="text-blue-600 hover:underline hover:text-blue-500">Register here!   </button></span>
+                    </div>
+                </form>
+            </div>
         );
     }
 
     function renderRegisterForm() {
         return (
-            <form onSubmit={onSubmit}>
-                <h2>Register</h2>
-                <label>Email</label>
-                <input type="text" ref={email} />
-                <label>Password</label>
-                <input type="password" ref={password} />
-                <button type="submit">Login</button>
-                <button type="button" onClick={changeLoginType}>Already have an account? Login here</button>
-            </form>
+            <div className="flex h-screen">
+                <form onSubmit={onSubmit} className="bg-gray-200 m-auto pt-8 px-16 pb-16 flex flex-col rounded-lg shadow-md">
+                    <h2 className="font-bold text-xl text-center mb-8">Register</h2>
+                    <div className="m-1 flex justify-between">
+                        <label className="mr-4 text-sm">Email</label>
+                        <input className="px-1 focus:drop-shadow-lg transition-all duration-300 text-sm" type="text" ref={email} />
+                    </div>
+                    <div className="m-1 flex justify-between">
+                        <label className="mr-4 text-sm">Password</label>
+                        <input className="px-1 focus:drop-shadow-lg transition-all duration-300 text-sm" type="password" ref={password} />
+                    </div>
+                    <div className="flex flex-col mt-4 text-center">
+                        <button type="submit" className="text-white font-bold text-sm py-2 px-4 rounded-full bg-blue-500 hover:bg-blue-600 hover:shadow-lg focus:bg-blue-600 focus:shadow-lg transition-all duration-300">LOGIN</button>
+                        <span className="text-xs">Already have an account? <button type="button" onClick={changeLoginType} className="text-blue-600 hover:underline hover:text-blue-500">Login here!</button></span>
+                    </div>
+                </form>
+            </div>
         );
     }
 

@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
+import { createClient } from "@supabase/supabase-js";
 import HeaderBar from "./HeaderBar";
-import CircuitSeasonPanel from "./CircuitSeasonPanel";
+import SeasonRacesPanel from "./SeasonRacesPanel";
+
+const sb = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_API_KEY);
 
 // Used for testing.
 const seasons = [
@@ -31,26 +34,51 @@ const circuitSeasons = [
 ]
 
 const HomeView = ({onLogout}) => {
-    const [season, setSeason] = useState(seasons[0]);
+    const [seasons, setSeasons] = useState([]);
+    const [currentSeason, setCurrentSeason] = useState(2024);
+    const [seasonRaces, setSeasonRaces] = useState(null);
 
     async function changeSeason(year) {
         // Do our database call based on the season selection.
         // const {data, error} = await supabase.from()
+        const {data, error} = await sb
+            .from('races')
+            .select()
+            .eq('year', currentSeason)
+            .order('round', { ascending: true });
+        
+        if (error) {
+            console.error(error);
+            return;
+        }
 
-        setSeason(year);
+        console.log(data);
+
+        setCurrentSeason(year);
+        setSeasonRaces(data);
     }
 
     // Grab the seasons from supabase.
-    // useEffect(() => {
-    //
-    // }, []);
+    useEffect(() => {
+        sb.from('seasons')
+        .select()
+        .then((response) => {
+            if (response.error)
+                return;
+            response.data.sort((a, b) => b.year - a.year);
+            setSeasons(response.data.map(s => s.year));
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    }, []);
 
-    const circuitSeason = circuitSeasons.find(c => c.year == season);
+    const circuitSeason = circuitSeasons.find(c => c.year == currentSeason);
 
     return (
         <div>
-            <HeaderBar seasons={seasons} currentSeason={season} setSeason={setSeason} onLogout={onLogout} />
-            <CircuitSeasonPanel circuitSeason={circuitSeason} />
+            <HeaderBar seasons={seasons} currentSeason={currentSeason} setSeason={changeSeason} onLogout={onLogout} />
+            <SeasonRacesPanel seasonRaces={seasonRaces} year={currentSeason} />
         </div>
     );
 };

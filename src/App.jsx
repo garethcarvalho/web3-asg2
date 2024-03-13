@@ -15,17 +15,17 @@ function App() {
 
   function renderUserFormView() {
     return (
-      <>
+      <div>
         <UserFormView onLogin={login} />
-      </>
+      </div>
     );
   }
 
   function renderHomeView() {
     return (
-      <>
+      <div>
         <HomeView onLogout={logout} />
-      </>
+      </div>
     );
   }
 
