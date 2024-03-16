@@ -4,7 +4,7 @@ const HeaderBar = ({seasons, currentSeason, setSeason, onLogout}) => {
     }
 
     return (
-        <div className="flex justify-between py-4 m-2 bg-blue-300">
+        <div className="flex justify-between mb-2 py-4 bg-gray-200">
             <div className="ml-8">
                 <label className="mr-2">Season</label>
                 <select name="season" value={currentSeason} onChange={onSeasonChanged}>

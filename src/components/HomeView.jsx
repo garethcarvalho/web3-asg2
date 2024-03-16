@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
 import HeaderBar from "./HeaderBar";
 import SeasonRacesPanel from "./SeasonRacesPanel";
+import Button from "./Button";
 
 const sb = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_API_KEY);
 
@@ -76,7 +77,7 @@ const HomeView = ({onLogout}) => {
     const circuitSeason = circuitSeasons.find(c => c.year == currentSeason);
 
     return (
-        <div>
+        <div className="bg-blue-200 h-screen mt-0 p-2">
             <HeaderBar seasons={seasons} currentSeason={currentSeason} setSeason={changeSeason} onLogout={onLogout} />
             <SeasonRacesPanel seasonRaces={seasonRaces} year={currentSeason} />
         </div>
