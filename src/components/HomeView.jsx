@@ -6,34 +6,6 @@ import Button from "./Button";
 
 const sb = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_API_KEY);
 
-// Used for testing.
-const seasons = [
-    2023, 2022, 2021, 2020, 2019, 2018
-];
-
-const circuitSeasons = [
-    {
-        year: 2023,
-        circuits: [
-            "British Grand Prix",
-            "Italian Grand Prix"
-        ]
-    },
-    {
-        year: 2022,
-        circuits: [
-            "Argentinian Grand Prix",
-            "Canadian Grand Prix"
-        ]
-    },{
-        year: 2021,
-        circuits: [
-            "United Statesian Grand Prix",
-            "Granolian Grand Prix"
-        ]
-    }
-]
-
 const HomeView = ({onLogout}) => {
     const [seasons, setSeasons] = useState([]);
     const [currentSeason, setCurrentSeason] = useState(2024);
@@ -73,8 +45,6 @@ const HomeView = ({onLogout}) => {
             console.log(err);
         });
     }, []);
-
-    const circuitSeason = circuitSeasons.find(c => c.year == currentSeason);
 
     return (
         <div className="bg-blue-200 h-screen mt-0 p-2">

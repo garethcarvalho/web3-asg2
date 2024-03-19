@@ -13,8 +13,8 @@ const HeaderBar = ({seasons, currentSeason, setSeason, onLogout}) => {
             </div>
             <h2 className="font-bold text-lg">F1 Dashboard</h2>
             <div className="mr-8">
-                <button className="">Favourites</button>
-                <button>About</button>
+                <button className="mx-2">Favourites</button>
+                <button className="mr-2">About</button>
                 <button onClick={onLogout}>Logout</button>
             </div>
         </div>
