@@ -18,8 +18,6 @@ const Button = ({children, onClick, type = "button", styles}) => {
         stylesStr += ` duration-${styles.transitionDuration}`;
     }
 
-    console.log(stylesStr);
-
     return (
         <button type={type} className={stylesStr} onClick={onClick}>{children}</button>
     );

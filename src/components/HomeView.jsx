@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
 import HeaderBar from "./HeaderBar";
 import SeasonRacesPanel from "./SeasonRacesPanel";
+import ResultsPanel from "./ResultsPanel";
 import Button from "./Button";
 
 const sb = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_API_KEY);
@@ -10,6 +11,7 @@ const HomeView = ({onLogout}) => {
     const [seasons, setSeasons] = useState([]);
     const [currentSeason, setCurrentSeason] = useState(2024);
     const [seasonRaces, setSeasonRaces] = useState(null);
+    const [currentRace, setCurrentRace] = useState(null);
 
     async function changeSeason(year) {
         // Do our database call based on the season selection.
@@ -31,6 +33,14 @@ const HomeView = ({onLogout}) => {
         setSeasonRaces(data);
     }
 
+    function showRaceInfo(raceId) {
+        if (currentRace && currentRace.raceId == raceId)
+            return;
+        const race = seasonRaces.find(r => r.raceId == raceId);
+        setCurrentRace(race);
+        console.log(raceId);
+    }
+
     // Grab the seasons from supabase.
     useEffect(() => {
         sb.from('seasons')
@@ -49,7 +59,10 @@ const HomeView = ({onLogout}) => {
     return (
         <div className="bg-blue-200 h-screen mt-0 p-2">
             <HeaderBar seasons={seasons} currentSeason={currentSeason} setSeason={changeSeason} onLogout={onLogout} />
-            <SeasonRacesPanel seasonRaces={seasonRaces} year={currentSeason} />
+            <div className="h-5/6 w-full flex">
+                <SeasonRacesPanel className="w-1/3" seasonRaces={seasonRaces} year={currentSeason} showRaceInfo={showRaceInfo} />
+                <ResultsPanel currentRace={currentRace} />
+            </div>
         </div>
     );
 };
