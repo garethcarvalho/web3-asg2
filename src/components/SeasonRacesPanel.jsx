@@ -1,6 +1,6 @@
 import Button from "./Button";
 
-const SeasonRacesPanel = ({seasonRaces, year, showRaceInfo}) => {
+const SeasonRacesPanel = ({ seasonRaces, year, showRaceInfo, showStandings }) => {
     if (!seasonRaces)
         return <section id="racesPanel"></section>;
 
@@ -15,7 +15,7 @@ const SeasonRacesPanel = ({seasonRaces, year, showRaceInfo}) => {
                             <th className="text-left text-sm">Circuit</th>
                         </tr>
                     </thead>
-                    {/* <tbody>
+                    <tbody>
                         {seasonRaces.map((r) => {
                             return (
                                 <tr key={r.raceId} className="hover:bg-gray-300 transition-all duration-200">
@@ -23,12 +23,12 @@ const SeasonRacesPanel = ({seasonRaces, year, showRaceInfo}) => {
                                     <td className="text-sm">{r.name}</td>
                                     <td className="text-right pr-4">
                                         <Button onClick={() => {showRaceInfo(r.raceId)}} styles={{normal: ["bg-blue-500 text-white mx-2 my-0.5"], hover: ["bg-blue-600", "shadow-lg"], focus: ["bg-blue-600", "shadow-lg"], transitionDuration: 100}}>Results</Button>
-                                        <Button styles={{normal: ["bg-blue-500", "text-white"], hover: ["bg-blue-600", "shadow-lg"], focus: ["bg-blue-600", "shadow-lg"], transitionDuration: 100}}>Standings</Button>
+                                        <Button onClick={() => {showStandings(r.raceId)}}styles={{normal: ["bg-blue-500", "text-white"], hover: ["bg-blue-600", "shadow-lg"], focus: ["bg-blue-600", "shadow-lg"], transitionDuration: 100}}>Standings</Button>
                                     </td>
                                 </tr>
                             );
                         })}
-                    </tbody> */}
+                    </tbody>
                 </table>
             </div>
         </section>
