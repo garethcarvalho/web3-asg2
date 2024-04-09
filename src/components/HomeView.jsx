@@ -12,7 +12,8 @@ const View = {
     Standings: 2
 }
 
-const sb = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_API_KEY);
+const sb = createClient("https://wtrszbziuynxielfzmkg.supabase.co",
+     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind0cnN6YnppdXlueGllbGZ6bWtnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDc3NzExOTEsImV4cCI6MjAyMzM0NzE5MX0.pJ_RIKUnZMiEyWYTDmKZljxkh0oBZ2xWelJGuMSxRn8");
 
 const HomeView = ({onLogout}) => {
     const [seasons, setSeasons] = useState([]);
